@@ -1,0 +1,12 @@
+.DS_Store
+tmp
+bin
+build
+*.zip
+*.class
+*.pyc
+*.pyo
+tmp
+bin
+build
+*.zip
