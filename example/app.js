@@ -5,7 +5,11 @@ Ti.API.info("module is => " + ticustomtab);
 Titanium.UI.setBackgroundColor('#000');
 
 // create tab group
-var tabGroup = Titanium.UI.createTabGroup();
+var tabGroup = Titanium.UI.createTabGroup({
+	tintColor: 'red',
+	customBackgroundImage: 'tabbar.png',
+	indicator: 'tabbar-active.png'
+});
 
 
 //

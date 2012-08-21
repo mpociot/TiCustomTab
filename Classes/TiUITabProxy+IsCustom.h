@@ -3,7 +3,7 @@
 
 @interface TiUITabProxy (IsCustom)
 
--(void)setImages_:(id)args;
+-(void)setImages:(id)args;
 -(void)updateTabBarItem;
 
 @end
