@@ -12,6 +12,21 @@ Features
 
 Usage
 ====================
+
+**Custom text color, shadow color, and font**
+
+	var ticustomtab = require('de.marcelpociot.ticustomtab');
+	
+	ticustomtab.customText({
+		textColor:  	'#ff9900',
+		shadowColor: 	'red', 
+		font: 			{
+			fontSize: 	20,
+			fontFamily: 'Palatino', 
+			fontWeight: 'bold'
+		}
+	});
+
 **Custom background image**
 
 	var tabGroup = Titanium.UI.createTabGroup({

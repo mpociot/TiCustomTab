@@ -86,10 +86,21 @@
 
 #pragma Public APIs
 
--(id)example:(id)args
+-(void)customText:(id)args
 {
-	// example method
-	return @"hello world";
+    ENSURE_SINGLE_ARG(args, NSDictionary);
+    TiColor *textColor      = [TiUtils colorValue:[args objectForKey:@"textColor"]];
+    TiColor *shadowColor    = [TiUtils colorValue:[args objectForKey:@"shadowColor"]];
+    WebFont *font           = [TiUtils fontValue:[args objectForKey:@"font"]];
+    [[UITabBarItem appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [textColor color], UITextAttributeTextColor,
+      [shadowColor color], UITextAttributeTextShadowColor,
+      [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset,
+      [font font], UITextAttributeFont,
+      nil
+      ]
+                                             forState:UIControlStateNormal];
 }
 
 -(id)exampleProp
