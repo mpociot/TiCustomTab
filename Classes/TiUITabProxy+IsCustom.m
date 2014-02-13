@@ -5,30 +5,30 @@
 
 -(void)updateTabBarItem
 {
-	if (rootController == nil)
+	if (controller == nil)
 	{
 		return;
 	}
 	ENSURE_UI_THREAD_0_ARGS;
-	
+
 	id badgeValue = [TiUtils stringValue:[self valueForKey:@"badge"]];
 	id icon = [self valueForKey:@"icon"];
     id selected= [self valueForKey:@"selected"];
     id unselected= [self valueForKey:@"unselected"];
-	
+
 	if ([icon isKindOfClass:[NSNumber class]])
 	{
 		int value = [TiUtils intValue:icon];
 		UITabBarItem *newItem = [[UITabBarItem alloc] initWithTabBarSystemItem:value tag:value];
 		[newItem setBadgeValue:badgeValue];
-		[rootController setTabBarItem:newItem];
+		[controller setTabBarItem:newItem];
 		[newItem release];
 		systemTab = YES;
 		return;
 	}
-    
+
 	NSString * title = [TiUtils stringValue:[self valueForKey:@"title"]];
-    
+
 	UIImage *image;
     UIImage *selectedImg;
     UIImage *unselectedImg;
@@ -54,7 +54,7 @@
 		}
 		image = [[ImageLoader sharedLoader] loadImmediateImage:[TiUtils toURL:icon proxy:currentWindow]];
 	}
-    
+
     if( selected != nil && unselected != nil ){
         // we might be inside a different context than our tab group and if so, he takes precendence in
 		// url resolution
@@ -71,13 +71,13 @@
 		selectedImg = [[ImageLoader sharedLoader] loadImmediateImage:[TiUtils toURL:selected proxy:currentWindow]];
         unselectedImg = [[ImageLoader sharedLoader] loadImmediateImage:[TiUtils toURL:unselected proxy:currentWindow]];
     }
-    
-	[rootController setTitle:title];
+
+	[controller setTitle:title];
 	UITabBarItem *ourItem = nil;
-    
+
 	if (!systemTab)
 	{
-		ourItem = [rootController tabBarItem];
+		ourItem = [controller tabBarItem];
 		[ourItem setTitle:title];
 		[ourItem setImage:image];
         if( selectedImg != nil ){
@@ -85,7 +85,7 @@
                   withFinishedUnselectedImage:unselectedImg];
         }
 	}
-    
+
 	if(ourItem == nil)
 	{
 		systemTab = NO;
@@ -94,9 +94,9 @@
             [ourItem setFinishedSelectedImage:selectedImg
                   withFinishedUnselectedImage:unselectedImg];
         }
-		[rootController setTabBarItem:ourItem];
+		[controller setTabBarItem:ourItem];
 	}
-    
+
 	[ourItem setBadgeValue:badgeValue];
 }
 
@@ -126,7 +126,7 @@
             {
                 currentWindow = self;
             }
-            
+
             selected = [[TiUtils toURL:selected proxy:currentWindow] absoluteString];
         }
         if([unselected isKindOfClass:[NSString class]])
@@ -143,10 +143,10 @@
             {
                 currentWindow = self;
             }
-            
+
             unselected = [[TiUtils toURL:unselected proxy:currentWindow] absoluteString];
         }
-        
+
         [self replaceValue:selected forKey:@"selected" notification:NO];
         [self replaceValue:unselected forKey:@"unselected" notification:NO];
         [self updateTabBarItem];
