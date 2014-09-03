@@ -2,6 +2,8 @@ TiCustomTab
 ===========================================
 
 This module gives the ability to define some custom Tab / TabGroup settings on iOS.
+This build works for Titanium SDK 3.2.1
+
 
 Features
 ========
