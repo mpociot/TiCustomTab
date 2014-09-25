@@ -97,7 +97,7 @@
       [textColor color], UITextAttributeTextColor,
       [shadowColor color], UITextAttributeTextShadowColor,
       [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset,
-      [font font], UITextAttributeFont,
+      [font font], NSFontAttributeName,
       nil
       ]
                                              forState:UIControlStateNormal];
